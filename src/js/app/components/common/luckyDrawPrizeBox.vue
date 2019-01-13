@@ -12,14 +12,14 @@
         <div class="prize-draw-content">
             <template v-if="!drawing">
                 <template v-for="(cardSN, cardIndex) in cardIds">
-                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}">
+                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
                         <card-box v-bind:cardSN="cardSN" :key="cardIndex"></card-box>
                     </div>
                 </template>
             </template>
             <template v-if="drawing">
                 <template v-for="(cardSN, cardIndex) in cardIds">
-                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}">
+                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
                         <card-box v-bind:cardSN="false" :key="false" v-show="cardSN === false"></card-box>
                         <template v-for="(cardInfo, cardIndex) in validCardList">
                             <card-box v-bind:cardSN="cardInfo.sn" :key="cardIndex" v-show="cardSN == cardInfo.sn"></card-box>
@@ -28,10 +28,6 @@
                 </template>
             </template>
         </div>
-
-                {{canUseCardSN}}
-
-                {{lockDrawIt}}
     </div>
 </template>
 <script>
@@ -51,10 +47,8 @@ export default {
             focusIndex: false,
 
 
-            randomDrawWait: 80,
-            drawNextWait: 1000,
-
-
+            // randomDrawWait: 80,
+            // drawNextWait: 1000,
         }
     },
     methods: {
@@ -99,11 +93,11 @@ export default {
                         clearTimeout(randDrawTimer);
                         that.drawNext();
                     }
-                }, that.randomDrawWait);
+                }, that.config.randomDrawWait);
 
                 drawNextTimer = setTimeout(function(){
                     that.drawNext();
-                }, that.drawNextWait);
+                }, that.config.drawNextWait);
             }
         },
         drawNext: function(){
@@ -147,6 +141,7 @@ export default {
             "validCardList",
             "waitCardSN",
             "lockDrawIt",
+            "config",
         ])
     },
     mounted() {

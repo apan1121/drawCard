@@ -16,6 +16,14 @@ export default {
             const that = this;
             that.$store.dispatch("triggerOpenPrizeListModal");
         },
+        triggerOpenResultModal: function(){
+            const that = this;
+            that.$store.dispatch("triggerOpenResultModal");
+        },
+        triggerOpenSettingModal: function(){
+            const that = this;
+            that.$store.dispatch("triggerOpenSettingModal");
+        },
     },
     watch: {
 

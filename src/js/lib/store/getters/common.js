@@ -3,6 +3,8 @@ export default {
 
     triggerOpenCardList: state => state.triggerOpenCardList,
     triggerOpenPrizeList: state => state.triggerOpenPrizeList,
+    triggerOpenResult: state => state.triggerOpenResult,
+    triggerOpenSetting: state => state.triggerOpenSetting,
 
     cardList: state => state.cardList,
     prizeList: state => state.prizeList,
@@ -35,6 +37,32 @@ export default {
             return data.sn;
         });
         return cardSN;
+    },
+    cardListByPrize: function(state){
+        let cardList = JSON.parse( JSON.stringify( state.cardList) );
+        let validCardList = {};
+        cardList.forEach(function(cardInfo){
+            if (!cardInfo.del) {
+                cardInfo.award = [];
+                validCardList[ cardInfo.sn ] = cardInfo;
+            }
+        });
+
+        let prizeList = JSON.parse( JSON.stringify( state.prizeList) );
+        prizeList.forEach(function(prizeInfo){
+            if (!prizeInfo.del){
+                prizeInfo.cardIds.forEach(function(cardSN){
+                    validCardList[cardSN].award.push( prizeInfo.title );
+                });
+            }
+        });
+
+
+        let output = [];
+        for (let sn in validCardList) {
+            output.push( validCardList[sn] );
+        }
+        return output;
     },
 
     lockDrawIt: state => state.lockDrawIt,

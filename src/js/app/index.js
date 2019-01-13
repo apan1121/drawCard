@@ -9,6 +9,8 @@ import {history_route, string, mixpanel} from 'lib/common/util';
 import headerBarBox from './components/common/headerBarBox';
 import cardListModal from './components/common/cardListModal';
 import prizeListModal from './components/common/prizeListModal';
+import resultModal from './components/common/resultModal';
+import settingModal from './components/common/settingModal';
 
 import luckyDrawBox from './components/common/luckyDrawBox';
 
@@ -77,6 +79,8 @@ var Page = new Vue({
 
         cardListModal,
         prizeListModal,
+        resultModal,
+        settingModal,
 
         luckyDrawBox,
     },

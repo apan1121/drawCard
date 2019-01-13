@@ -29,6 +29,19 @@ export default {
         state.prizeList = prizeList;
     },
 
+    setConfig(state, params) {
+        let config = JSON.parse( JSON.stringify( state.config) );
+        config = {...config, ...params.config};
+        state.config = config;
+    },
+
+    clearAllData(state, params) {
+        let defaultConfig = JSON.parse( JSON.stringify( state.defaultConfig) );
+        state.config = defaultConfig;
+        state.cardList = [];
+        state.prizeList = [];
+    },
+
     saveToLocalStorage(state, params) {
         let config = JSON.parse( JSON.stringify( state.config) );
         let cardList = JSON.parse( JSON.stringify( state.cardList) );
@@ -49,6 +62,12 @@ export default {
     },
     triggerOpenPrizeListModal(state, params) {
         state.triggerOpenPrizeList = new Date().getTime();
+    },
+    triggerOpenResultModal(state, params) {
+        state.triggerOpenResult = new Date().getTime();
+    },
+    triggerOpenSettingModal(state, params) {
+        state.triggerOpenSetting = new Date().getTime();
     },
 
     saveAddCard(state, params) {

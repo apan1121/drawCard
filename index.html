@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lucky Draw 開獎機</title>
+    <title>Draw Card 抽牌機</title>
     <meta name='author' content='Byron.Chen' />
     <meta name='apple-mobile-web-app-title' content='Lucky Draw' />
     <meta name='apple-mobile-web-app-capable' content='yes' />
@@ -26,7 +26,7 @@
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <a class="navbar-brand" href="#">
                     <i class="icon-power"></i>
-                    {{"Default Title"}}
+                    {{config.webTitle || "Draw Card"}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a class="nav-link" v-on:click="triggerOpenResultModal">
                                 <i class="fas fa-poll"></i>
                                 抽獎結果
                             </a>
@@ -54,7 +54,7 @@
                     </ul>
                     <ul class="navbar-nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a class="nav-link" v-on:click="triggerOpenSettingModal">
                                 <i class="fas fa-cog"></i>
                             </a>
                         </li>
@@ -67,6 +67,8 @@
         </main>
         <card-list-modal></card-list-modal>
         <prize-list-modal></prize-list-modal>
+        <result-modal></result-modal>
+        <setting-modal></setting-modal>
     </div>
 
     <script src="./dist/js/app/index.bundle.js"></script>

@@ -3,6 +3,14 @@ export default {
         commit("initSystem", params);
     },
 
+    setConfig({ commit }, params) {
+        commit("setConfig", params);
+    },
+
+    clearAllData({ commit }, params) {
+        commit("clearAllData", params);
+    },
+
     saveToLocalStorage({ commit }, params) {
         commit("saveToLocalStorage", params);
     },
@@ -13,6 +21,14 @@ export default {
 
     triggerOpenPrizeListModal({commit}, params) {
         commit("triggerOpenPrizeListModal", params);
+    },
+
+    triggerOpenResultModal({commit}, params) {
+        commit("triggerOpenResultModal", params);
+    },
+
+    triggerOpenSettingModal({commit}, params) {
+        commit("triggerOpenSettingModal", params);
     },
 
     saveAddCard({commit}, params) {
