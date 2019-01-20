@@ -42,6 +42,8 @@
                     </div>
                     <div class="col-6 text-right">
                         <button type="button" class="btn btn-primary" v-on:click="download">下載</button>
+
+                        <button type="button" class="btn btn-primary" v-on:click="downloadResult">下載兌獎列表</button>
                     </div>
                 </div>
             </div>
@@ -63,6 +65,28 @@ export default {
         }
     },
     methods: {
+        downloadResult: function(){
+            const that = this;
+            let cardListByPrize = JSON.parse(JSON.stringify(that.cardListByPrize));
+
+            let cvs = "人名,圖片名稱,獎項\n";
+            cardListByPrize.forEach(function(Obj){
+                if (!!Obj.memberList) {
+                    Obj.memberList.forEach(function(memberName){
+                        cvs += [ memberName, Obj.title, Obj.award.join("、")].join(",") + "\n";
+                    });
+                }
+            });
+            let csvContent = "data:text/csv;charset=utf-8," + cvs;
+            let encodedUri = encodeURI(csvContent);
+
+            let link = document.createElement("a");
+            link.style.display = "none";
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", that.config.webTitle + "中獎人名單.csv");
+            document.body.appendChild(link); // Required for FF
+            link.click();
+        },
         download: function(){
             const that = this;
             let cardListByPrize = JSON.parse(JSON.stringify(that.cardListByPrize));

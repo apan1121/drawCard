@@ -44,10 +44,13 @@
                                     <input type="text" class="form-control" placeholder="新增的圖卡網址" v-model="editCard.img">
                                     <input type="text" class="form-control" placeholder="新增的圖卡名稱" v-model="editCard.title">
                                     <div class="input-group-append">
-                                        <span class="input-group-text" style="cursor: pointer" v-on:click="saveEditCard(cardInfo)">
+                                        <span class="input-group-text" style="cursor: pointer" v-on:click="saveEditCard(editCard)">
                                             <i class="far fa-save"></i>
                                         </span>
                                     </div>
+                                </div>
+                                <div>
+                                    <textarea class="form-control" v-model="editCard.memberList"></textarea>
                                 </div>
                             </div>
                         </template>
@@ -71,6 +74,9 @@
                                     </span>
                                 </div>
                             </div>
+                            <div>
+                                <textarea class="form-control" v-model="addNewCard.memberList"></textarea>
+                            </div>
                         </div>
                     </template>
                 </div>
@@ -93,6 +99,7 @@ export default {
             addNewCard: {
                 img: "",
                 title: "",
+                memberList: "",
             },
 
             focuseEditCardSN: null,
@@ -100,6 +107,7 @@ export default {
                 sn: "",
                 img: "",
                 title: "",
+                memberList: "",
             }
         }
     },
@@ -115,19 +123,40 @@ export default {
         },
         openEditCard: function(cardInfo){
             const that = this;
+            let memberList = "";
+
+            if (Array.isArray(cardInfo.memberList)) {
+                memberList = cardInfo.memberList.join("\n");
+            } else {
+                memberList = "";
+            }
+
+
             that.focuseEditCardSN = cardInfo.sn;
-            that.editCard = {
-                ...cardInfo,
-            };
+            that.editCard.sn = cardInfo.sn;
+            that.editCard.img = cardInfo.img;
+            that.editCard.title = cardInfo.title;
+            that.editCard.memberList = memberList;
+
         },
         saveEditCard: function(cardInfo){
             const that = this;
             if (!!that.editCard.title && !!that.editCard.img) {
+                let editCard = JSON.parse(JSON.stringify(that.editCard));
+                let memberList = editCard.memberList;
+
+                if (!!memberList) {
+                    memberList = memberList.split("\n");
+                } else {
+                    memberList = [];
+                }
+
                 let params = {
                     cardInfo: {
                         sn: cardInfo.sn,
                         img: that.editCard.img,
                         title: that.editCard.title,
+                        memberList: memberList,
                     }
                 };
 
@@ -142,6 +171,7 @@ export default {
             that.addNewCard = {
                 img: "",
                 title: "",
+                memberList: "",
             };
             that.addNewFlag = flag;
         },
@@ -149,8 +179,17 @@ export default {
             const that = this;
 
             if (!!that.addNewCard.title && !!that.addNewCard.img) {
+                let addNewCard = JSON.parse(JSON.stringify(that.addNewCard));
+                let memberList = addNewCard.memberList.trim();
+
+                if (!!memberList) {
+                    addNewCard.memberList = memberList.split("\n");
+                } else {
+                    addNewCard.editCard.memberList = [];
+                }
+
                 const params = {
-                    cardInfo: that.addNewCard,
+                    cardInfo: addNewCard,
                 };
                 that.$store.dispatch("saveAddCard", params);
 

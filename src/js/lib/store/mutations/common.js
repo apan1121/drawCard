@@ -77,11 +77,13 @@ export default {
             sn: cardList.length,
             title: params.cardInfo.title,
             img: params.cardInfo.img,
+            memberList: params.cardInfo.memberList,
         };
         cardList.push({
             sn: cardList.length,
             title: params.cardInfo.title,
             img: params.cardInfo.img,
+            memberList: params.cardInfo.memberList,
             del: false,
         });
 
@@ -94,8 +96,10 @@ export default {
             sn: params.cardInfo.sn,
             title: params.cardInfo.title,
             img: params.cardInfo.img,
+            memberList: params.cardInfo.memberList,
+            del: false,
         };
-
+        console.log(cardInfo);
         cardList[ cardInfo.sn ] = cardInfo;
         state.cardList = cardList;
     },
