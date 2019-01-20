@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <textarea class="form-control" v-model="editCard.memberList"></textarea>
+                                    <textarea class="form-control" v-model="editCard.memberList" placeholder="請條列輸入綁定名單"></textarea>
                                 </div>
                             </div>
                         </template>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div>
-                                <textarea class="form-control" v-model="addNewCard.memberList"></textarea>
+                                <textarea class="form-control" v-model="addNewCard.memberList" placeholder="請條列輸入綁定名單"></textarea>
                             </div>
                         </div>
                     </template>
