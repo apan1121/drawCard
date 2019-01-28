@@ -1,7 +1,7 @@
 <template>
     <div class="lucky-draw-prize-box" v-bind:class="{'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }">
         <div class="prize-header">
-            <div class="prize-title">{{prizeInfo.title}}</div>
+            <div class="prize-title">{{prizeInfo.title}} [{{prizeInfo.cnt}}]</div>
             <div class="prize-button">
                 <button type="button" class="btn btn-success btn-sm" v-bind:disabled="!luckyDrawBool" v-on:click="drawIt">
                     抽一把
