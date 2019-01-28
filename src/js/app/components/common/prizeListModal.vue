@@ -30,12 +30,19 @@
                                         <i class="fas fa-trash-alt"></i>
                                     </span>
                                 </div>
+                                <div style="width: 100%;"><small>{{prizeInfo.description || '尚未輸入描述'}}</small></div>
                             </div>
+
                         </template>
                         <template v-else>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="編輯獎項" v-model="editPrize.title">
-                                <input style="width: 100px;flex: none; text-align: center;" type="number" class="form-control" placeholder="數量" min="0" :max="editMaxCnt" step="1" v-model="editPrize.cnt">
+                                <input type="text" class="form-control" placeholder="編輯描述" v-model="editPrize.description">
+                                <select v-model="editPrize.audio">
+                                    <option value="">勝利音效</option>
+                                    <option v-for="(path, key) in winnerAudio" :key="key" :value="key">{{key}}</option>
+                                </select>
+                                <input style="width: 70px;flex: none; text-align: center; padding-right: 0px; padding-left: 0px;" type="number" class="form-control" placeholder="數量" min="0" :max="editMaxCnt" step="1" v-model="editPrize.cnt">
                                 <div class="input-group-append">
                                     <span class="input-group-text" style="cursor: pointer" v-on:click="saveEditPrize(prizeInfo)">
                                         <i class="far fa-save"></i>
@@ -56,7 +63,12 @@
                         <template v-else>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="新增獎項" v-model="addNewPrize.title">
-                                <input style="width: 100px;flex: none; text-align: center;" type="number" class="form-control" placeholder="數量" min="0" :max="addMaxCnt" step="1" v-model="addNewPrize.cnt">
+                                <input type="text" class="form-control" placeholder="編輯描述" v-model="addNewPrize.description">
+                                <select v-model="addNewPrize.audio">
+                                    <option value="">勝利音效</option>
+                                    <option v-for="(path, key) in winnerAudio" :key="key" :value="key">{{key}}</option>
+                                </select>
+                                <input style="width: 70px;flex: none; text-align: center; padding-right: 0px; padding-left: 0px;" type="number" class="form-control" placeholder="數量" min="0" :max="addMaxCnt" step="1" v-model="addNewPrize.cnt">
                                 <div class="input-group-append">
                                     <span class="input-group-text" style="cursor: pointer" v-on:click="saveAddPrize">
                                         <i class="far fa-save"></i>
@@ -77,12 +89,18 @@ import { mapActions, mapGetters } from 'vuex';
 
 let targetDom = null;
 
+const audio = {
+
+};
+
 export default {
     data: function(){
         return {
             addNewFlag: false,
             addNewPrize: {
                 title: "",
+                description: "",
+                audio: "",
                 cnt: "",
             },
 
@@ -91,6 +109,8 @@ export default {
                 sn: "",
                 img: "",
                 title: "",
+                description: "",
+                audio: "",
             }
         }
     },
@@ -125,6 +145,8 @@ export default {
             that.addNewFlag = flag;
             that.addNewPrize = {
                 title: "",
+                description: "",
+                audio: "",
                 cnt: "",
             };
         },
@@ -145,7 +167,20 @@ export default {
             const that = this;
             targetDom.modal("show");
         },
-
+        'editPrize.audio': function(newVal){
+            if (!!audio[newVal]) {
+                audio[newVal].pause();
+                audio[newVal].currentTime = 0;
+                audio[newVal].play();
+            }
+        },
+        'addNewPrize.audio': function(newVal){
+            if (!!audio[newVal]) {
+                audio[newVal].pause();
+                audio[newVal].currentTime = 0;
+                audio[newVal].play();
+            }
+        }
     },
     computed: {
         allCnt: function(){
@@ -177,17 +212,22 @@ export default {
                     cnt = cnt - prizeInfo.cnt;
                 }
             });
-            console.log(cnt);
             return cnt;
         },
         ...mapGetters([
             "triggerOpenPrizeList",
             "validCardList",
             "validPrizeList",
+            "winnerAudio",
         ]),
     },
     mounted() {
         const that = this;
+
+        for (let key in that.winnerAudio) {
+            audio[key] = new Audio('./dist/mp3/' + that.winnerAudio[key]);
+        }
+
         targetDom = $(that.$el);
         targetDom.bind("shown.bs.modal", function() {
         });

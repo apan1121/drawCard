@@ -8,6 +8,7 @@
                 </button>
             </div>
         </div>
+        <div class="prize-description">{{prizeInfo.description}}</div>
 
         <div class="prize-draw-content">
             <template v-if="!drawing">
@@ -38,6 +39,17 @@ import cardBox from './cardBox';
 
 let randDrawTimer = null;
 let drawNextTimer = null;
+
+
+const audio = {
+    ding: new Audio("./dist/mp3/ding.mp3"),
+    dong: new Audio("./dist/mp3/dong.mp3"),
+    winner: [
+        // new Audio("./dist/mp3/winner1.mp3"),
+        new Audio("./dist/mp3/winner2.mp3"),
+    ]
+}
+
 
 export default {
     data: function(){
@@ -79,6 +91,11 @@ export default {
                     cardIds: that.cardIds,
                 };
                 that.$store.dispatch("setCardIdsByPrizeSN", params);
+                if (!!audio[ that.prizeInfo.audio ]) {
+                    audio[ that.prizeInfo.audio ].pause();
+                    audio[ that.prizeInfo.audio ].currentTime = 0;
+                    audio[ that.prizeInfo.audio ].play();
+                }
                 return false;
             } else {
                 randDrawTimer = setInterval(function(){
@@ -89,6 +106,9 @@ export default {
                         let cardIds = JSON.parse(JSON.stringify(that.cardIds) );
                         cardIds[that.focusIndex] = that.canUseCardSN[index];
                         that.cardIds = cardIds;
+                        audio.ding.pause();
+                        audio.ding.currentTime = 0;
+                        audio.ding.play();
                     } else {
                         clearTimeout(randDrawTimer);
                         that.drawNext();
@@ -104,6 +124,9 @@ export default {
             const that = this;
             clearTimeout(drawNextTimer);
             that.focusIndex += 1;
+            audio.dong.pause();
+            audio.dong.currentTime = 0;
+            audio.dong.play();
             that.actionDraw();
         },
         formatPrizeInfo: function(){
@@ -141,11 +164,16 @@ export default {
             "validCardList",
             "waitCardSN",
             "lockDrawIt",
+            "winnerAudio",
             "config",
         ])
     },
     mounted() {
         const that = this;
+        for (let key in that.winnerAudio) {
+            audio[key] = new Audio('./dist/mp3/' + that.winnerAudio[key]);
+        }
+
         that.formatPrizeInfo();
     },
     props: {

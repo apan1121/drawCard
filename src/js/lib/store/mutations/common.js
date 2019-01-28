@@ -115,6 +115,8 @@ export default {
         let prizeInfo = {
             sn: prizeList.length,
             title: params.prizeInfo.title,
+            description: params.prizeInfo.description,
+            audio: params.prizeInfo.audio,
             cnt: params.prizeInfo.cnt,
             cardIds:[],
             del: false,
@@ -130,6 +132,9 @@ export default {
         let prizeInfo = {
             ...prizeList[ params.prizeInfo.sn ],
             title: params.prizeInfo.title,
+            description: params.prizeInfo.description,
+            audio: params.prizeInfo.audio,
+
             cnt: params.prizeInfo.cnt,
         };
         prizeList[ params.prizeInfo.sn ] = prizeInfo;
@@ -150,7 +155,6 @@ export default {
         let prizeList = JSON.parse( JSON.stringify( state.prizeList) );
 
         for (var i in prizeList) {
-            console.log(prizeList[i].sn , );
             if (prizeList[i].sn == params.sn) {
                 prizeList[i].cardIds = params.cardIds;
             }

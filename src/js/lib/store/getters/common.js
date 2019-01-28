@@ -8,6 +8,7 @@ export default {
 
     cardList: state => state.cardList,
     prizeList: state => state.prizeList,
+    winnerAudio: state => state.winnerAudio,
 
     validCardList: function(state){
         let cardList = JSON.parse( JSON.stringify( state.cardList) );

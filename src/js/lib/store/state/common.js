@@ -20,6 +20,14 @@ export default {
         drawNextWait: 1000,
     },
 
+    winnerAudio: {
+        winner1: "winner1.mp3",
+        winner2: "winner2.mp3",
+        winner3: "winner3.mp3",
+        winner4: "winner4.mp3",
+        winner5: "winner5.mp3",
+    },
+
     cardList: [],
     prizeList: [],
 
