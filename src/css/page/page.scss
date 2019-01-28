@@ -8,6 +8,11 @@
     margin: 10px;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    &.un-focus{
+        opacity: 0.1;
+        height: 10px;
+        overflow: hidden;
+    }
     .prize-header{
         display: flex;
         flex: 1;

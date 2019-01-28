@@ -1,5 +1,5 @@
 <template>
-    <div class="lucky-draw-prize-box">
+    <div class="lucky-draw-prize-box" v-bind:class="{'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }">
         <div class="prize-header">
             <div class="prize-title">{{prizeInfo.title}}</div>
             <div class="prize-button">
@@ -73,7 +73,7 @@ export default {
             clearTimeout(randDrawTimer);
 
             that.drawing = true;
-            that.$store.dispatch("lockDrawIt", true);
+            that.$store.dispatch("lockDrawIt", that.prizeInfo.sn);
             let cardIds = JSON.parse(JSON.stringify(that.cardIds) );
             that.focusIndex = false;
             for (let i in cardIds) {
@@ -85,7 +85,7 @@ export default {
 
             if (that.focusIndex === false) {
                 // that.drawing = false;
-                that.$store.dispatch("lockDrawIt", false);
+
                 const params = {
                     sn: that.prizeInfo.sn,
                     cardIds: that.cardIds,
@@ -94,6 +94,9 @@ export default {
                 if (!!audio[ that.prizeInfo.audio ]) {
                     audio[ that.prizeInfo.audio ].pause();
                     audio[ that.prizeInfo.audio ].currentTime = 0;
+                    audio[ that.prizeInfo.audio ].onended = function(){
+                        that.$store.dispatch("lockDrawIt", false);
+                    };
                     audio[ that.prizeInfo.audio ].play();
                 }
                 return false;
