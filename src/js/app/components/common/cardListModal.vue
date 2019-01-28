@@ -179,13 +179,14 @@ export default {
             const that = this;
 
             if (!!that.addNewCard.title && !!that.addNewCard.img) {
+
                 let addNewCard = JSON.parse(JSON.stringify(that.addNewCard));
                 let memberList = addNewCard.memberList.trim();
 
                 if (!!memberList) {
                     addNewCard.memberList = memberList.split("\n");
                 } else {
-                    addNewCard.editCard.memberList = [];
+                    addNewCard.memberList = [];
                 }
 
                 const params = {
