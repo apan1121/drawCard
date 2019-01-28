@@ -24,11 +24,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">圖片隨機速度 [{{input.randomDrawWait}} ms]</label>
-                            <input type="range" class="form-control"  min="10" max="500" v-model="input.randomDrawWait">
+                            <input type="range" class="form-control"  min="10" max="1000" v-model="input.randomDrawWait">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">圖片抽取速度 [{{input.drawNextWait}} ms]</label>
-                            <input type="range" class="form-control"  min="700" max="1500" v-model="input.drawNextWait">
+                            <input type="range" class="form-control"  min="700" max="5000" v-model="input.drawNextWait">
                         </div>
                     </form>
                 </div>
