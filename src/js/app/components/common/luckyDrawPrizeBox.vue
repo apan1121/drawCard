@@ -1,33 +1,41 @@
 <template>
-    <div class="lucky-draw-prize-box" v-bind:class="{'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }">
-        <div class="prize-header">
-            <div class="prize-title">{{prizeInfo.title}} [{{prizeInfo.cnt}}]</div>
-            <div class="prize-button">
-                <button type="button" class="btn btn-success btn-sm" v-bind:disabled="!luckyDrawBool" v-on:click="drawIt">
-                    抽一把
-                </button>
+    <div class="lucky-draw-prize-box" v-bind:class="{mask: mask, 'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }">
+        <div class="content-wrapper">
+            <div class="prize-header">
+                <div class="prize-title">{{prizeInfo.title}} [{{prizeInfo.cnt}}]</div>
+                <div class="prize-button">
+                    <button type="button" class="btn btn-success btn-sm" v-bind:disabled="!luckyDrawBool" v-on:click="drawIt">
+                        抽一把
+                    </button>
+                </div>
+            </div>
+            <div class="prize-description" v-if="!!prizeInfo.description">{{prizeInfo.description}}</div>
+
+            <div class="prize-draw-content">
+                <template v-if="!drawing">
+                    <template v-for="(cardSN, cardIndex) in cardIds">
+                        <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
+                            <card-box v-bind:cardSN="cardSN" :key="cardIndex"></card-box>
+                        </div>
+                    </template>
+                </template>
+                <template v-if="drawing">
+                    <template v-for="(cardSN, cardIndex) in cardIds">
+                        <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
+                            <card-box v-bind:cardSN="false" :key="false" v-show="cardSN === false"></card-box>
+                            <template v-for="(cardInfo, cardIndex) in validCardList">
+                                <card-box v-bind:cardSN="cardInfo.sn" :key="cardIndex" v-show="cardSN == cardInfo.sn"></card-box>
+                            </template>
+                        </div>
+                    </template>
+                </template>
             </div>
         </div>
-        <div class="prize-description" v-if="!!prizeInfo.description">{{prizeInfo.description}}</div>
 
-        <div class="prize-draw-content">
-            <template v-if="!drawing">
-                <template v-for="(cardSN, cardIndex) in cardIds">
-                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
-                        <card-box v-bind:cardSN="cardSN" :key="cardIndex"></card-box>
-                    </div>
-                </template>
-            </template>
-            <template v-if="drawing">
-                <template v-for="(cardSN, cardIndex) in cardIds">
-                    <div class="card-box" v-bind:class="{empty: (cardSN === false)}" v-bind:style="{width: config.boxSize+'px', height: config.boxSize+'px'}">
-                        <card-box v-bind:cardSN="false" :key="false" v-show="cardSN === false"></card-box>
-                        <template v-for="(cardInfo, cardIndex) in validCardList">
-                            <card-box v-bind:cardSN="cardInfo.sn" :key="cardIndex" v-show="cardSN == cardInfo.sn"></card-box>
-                        </template>
-                    </div>
-                </template>
-            </template>
+        <div class="mask-wrapper" v-on:click="openMask">
+            <div class="icon">
+                <i class="fas fa-gift"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -57,6 +65,7 @@ export default {
             cardIds: [],
             drawing: false,
             focusIndex: false,
+            mask: true,
 
 
             // randomDrawWait: 80,
@@ -64,6 +73,12 @@ export default {
         }
     },
     methods: {
+        openMask: function(){
+            const that = this;
+            $(that.$el).find(".mask-wrapper").fadeOut( function(){
+                that.mask = false;
+            });
+        },
         drawIt: function(){
             const that = this;
             that.actionDraw();
