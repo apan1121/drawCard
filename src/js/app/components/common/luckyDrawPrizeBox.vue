@@ -8,7 +8,7 @@
                 </button>
             </div>
         </div>
-        <div class="prize-description">{{prizeInfo.description}}</div>
+        <div class="prize-description" v-if="!!prizeInfo.description">{{prizeInfo.description}}</div>
 
         <div class="prize-draw-content">
             <template v-if="!drawing">
@@ -98,6 +98,8 @@ export default {
                         that.$store.dispatch("lockDrawIt", false);
                     };
                     audio[ that.prizeInfo.audio ].play();
+                } else {
+                    that.$store.dispatch("lockDrawIt", false);
                 }
                 return false;
             } else {

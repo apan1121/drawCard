@@ -62,6 +62,13 @@ var Page = new Vue({
                 that.saveToLocalStorage();
             }
         },
+        config: {
+            deep: true,
+            handler: function (val, oldVal) {
+                const that = this;
+                that.saveToLocalStorage();
+            }
+        },
     },
     computed: {
         ...mapGetters([
