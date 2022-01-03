@@ -9,6 +9,9 @@ export default {
     defaultConfig: {
         webTitle: "Draw Card",
         boxSize: 200,
+        headerColor: '#343a40',
+        backgroundImg: '',
+        backgroundOpacity: 0.5,
         randomDrawWait: 80,
         drawNextWait: 1000,
     },
@@ -16,6 +19,9 @@ export default {
     config: {
         webTitle: "Draw Card",
         boxSize: 200,
+        headerColor: '#343a40',
+        backgroundImg: '',
+        backgroundOpacity: 0.5,
         randomDrawWait: 80,
         drawNextWait: 1000,
     },
