@@ -53,7 +53,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="col-6 text-left">
-                        <button type="button" class="btn btn-danger" v-on:click="clear">清除所有資料</button>
+                        <button type="button" class="btn btn-danger" v-on:click="clear">清除所有</button>
+                        <button type="button" class="btn btn-warning" v-on:click="clearAward">清除獲獎</button>
                     </div>
                     <div class="col-6 text-right">
                         <button type="button" class="btn btn-default" v-on:click="cancel">回復</button>
@@ -113,6 +114,13 @@ export default {
             const that = this;
             if (confirm("您確定要清除所有的資料嗎？")) {
                 that.$store.dispatch("clearAllData");
+                targetDom.modal("hide");
+            }
+        },
+        clearAward(){
+            const that = this;
+            if (confirm("您確定要清除獲獎資料嗎？")) {
+                that.$store.dispatch("clearAwardData");
                 targetDom.modal("hide");
             }
         },

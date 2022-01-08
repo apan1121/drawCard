@@ -1,66 +1,70 @@
 export default {
-    initSystem({ commit }, params) {
-        commit("initSystem", params);
+    initSystem({ commit }, params){
+        commit('initSystem', params);
     },
 
-    setConfig({ commit }, params) {
-        commit("setConfig", params);
+    setConfig({ commit }, params){
+        commit('setConfig', params);
     },
 
-    clearAllData({ commit }, params) {
-        commit("clearAllData", params);
+    clearAllData({ commit }, params){
+        commit('clearAllData', params);
     },
 
-    saveToLocalStorage({ commit }, params) {
-        commit("saveToLocalStorage", params);
+    clearAwardData({ commit }, params){
+        commit('clearAwardData', params);
     },
 
-    triggerOpenCardListModal({commit}, params) {
-        commit("triggerOpenCardListModal", params);
+    saveToLocalStorage({ commit }, params){
+        commit('saveToLocalStorage', params);
     },
 
-    triggerOpenPrizeListModal({commit}, params) {
-        commit("triggerOpenPrizeListModal", params);
+    triggerOpenCardListModal({ commit }, params){
+        commit('triggerOpenCardListModal', params);
     },
 
-    triggerOpenResultModal({commit}, params) {
-        commit("triggerOpenResultModal", params);
+    triggerOpenPrizeListModal({ commit }, params){
+        commit('triggerOpenPrizeListModal', params);
     },
 
-    triggerOpenSettingModal({commit}, params) {
-        commit("triggerOpenSettingModal", params);
+    triggerOpenResultModal({ commit }, params){
+        commit('triggerOpenResultModal', params);
     },
 
-    saveAddCard({commit}, params) {
-        commit("saveAddCard", params);
+    triggerOpenSettingModal({ commit }, params){
+        commit('triggerOpenSettingModal', params);
     },
 
-    saveEditCard({commit}, params) {
-        commit("saveEditCard", params);
+    saveAddCard({ commit }, params){
+        commit('saveAddCard', params);
     },
 
-    delCardBySN({commit}, params) {
-        commit("delCardBySN", params);
+    saveEditCard({ commit }, params){
+        commit('saveEditCard', params);
     },
 
-    saveAddPrize({commit}, params) {
-        commit("saveAddPrize", params);
+    delCardBySN({ commit }, params){
+        commit('delCardBySN', params);
     },
 
-    saveEditPrize({commit}, params) {
-        commit("saveEditPrize", params);
+    saveAddPrize({ commit }, params){
+        commit('saveAddPrize', params);
     },
 
-    delEditPrize({commit}, params) {
-        commit("delEditPrize", params);
+    saveEditPrize({ commit }, params){
+        commit('saveEditPrize', params);
+    },
+
+    delEditPrize({ commit }, params){
+        commit('delEditPrize', params);
     },
 
 
-    lockDrawIt({commit}, params) {
-        commit("lockDrawIt", params);
+    lockDrawIt({ commit }, params){
+        commit('lockDrawIt', params);
     },
 
-    setCardIdsByPrizeSN({commit}, params) {
-        commit("setCardIdsByPrizeSN", params);
+    setCardIdsByPrizeSN({ commit }, params){
+        commit('setCardIdsByPrizeSN', params);
     },
 };
