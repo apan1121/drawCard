@@ -69,12 +69,35 @@ var Page = new Vue({
                 that.saveToLocalStorage();
             }
         },
+        lockDrawIt: {
+            handler(newVal, oldVal){
+                if (newVal === false && oldVal !== false) {
+                    this.$nextTick(() => {
+                        const target = $(this.$el).find(`.lucky-draw-prize-box[data-prize_sn="${oldVal}"]`);
+                        if (target.length > 0) {
+                            const top = target.offset().top - 60;
+                            $("html,body").animate({scrollTop: top}, 1);
+                        }
+                    });
+                } else if (newVal !== false && oldVal === false){
+                    this.$nextTick(() => {
+                        const target = $(this.$el).find(`.lucky-draw-prize-box[data-prize_sn="${newVal}"]`);
+                        if (target.length > 0) {
+                            const top = target.offset().top - 60;
+                            $("html,body").animate({scrollTop: top}, 1);
+                        }
+                    });
+                }
+            },
+        },
     },
     computed: {
         ...mapGetters([
             "config",
             "cardList",
             "prizeList",
+            "validCardList",
+            "lockDrawIt",
         ])
     },
     mounted() {

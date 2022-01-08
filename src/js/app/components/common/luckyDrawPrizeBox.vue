@@ -1,5 +1,8 @@
 <template>
-    <div class="lucky-draw-prize-box" v-bind:class="{mask: mask, 'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }">
+    <div class="lucky-draw-prize-box"
+        v-bind:class="{mask: mask, 'un-focus': (lockDrawIt !== false && prizeInfo.sn != lockDrawIt) }"
+        :data-prize_sn="prizeInfo.sn"
+    >
         <div class="content-wrapper">
             <div class="prize-header">
                 <div class="prize-title">{{prizeInfo.title}} [{{prizeInfo.cnt}}]</div>
@@ -168,7 +171,12 @@ export default {
         luckyDrawBool: function(){
             const that = this;
             let flag = true;
-            if (that.prizeInfo.cnt == 0 || that.drawing || that.lockDrawIt) {
+            let cardIds = JSON.parse(JSON.stringify(that.cardIds) );
+            let emptyCardIdCnt = cardIds.filter((sn) => {
+                return sn === false;
+            }).length;
+
+            if (that.prizeInfo.cnt == 0 || that.drawing || that.lockDrawIt || emptyCardIdCnt === 0) {
                 flag = false;
             }
             return flag;

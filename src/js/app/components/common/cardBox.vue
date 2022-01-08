@@ -1,7 +1,21 @@
 <template>
-    <div class="card-box-wrapper imgLiquidFill">
-        <img :src="cardList[cardSN].img" v-if="cardSN !== false">
+    <div class="card-box-wrapper">
+        <div
+            v-if="cardSN !== false"
+            :style="{
+                'background-image': `url(${cardList[cardSN].img})`,
+                'background-size': 'cover',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                width: '100%',
+                height: '100%',
+            }"
+        >
+        </div>
     </div>
+    <!-- <div class="card-box-wrapper imgLiquidFill">
+        <img :src="cardList[cardSN].img" v-if="cardSN !== false">
+    </div> -->
 </template>
 <script>
 import Vue from 'vue';
@@ -16,7 +30,7 @@ export default {
     methods: {
         init: function(){
             const that = this;
-            $("body").trigger("resizeImg");
+            // $("body").trigger("resizeImg");
         },
     },
     watch: {

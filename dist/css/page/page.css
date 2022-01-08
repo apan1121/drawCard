@@ -19,15 +19,18 @@
   position: relative; }
   .lucky-draw-prize-box.un-focus {
     opacity: 0.1;
-    height: 10px;
-    overflow: hidden; }
+    height: 0px;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    border: 0px; }
   .lucky-draw-prize-box .prize-header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1; }
+        -ms-flex: 1;
+            flex: 1; }
     .lucky-draw-prize-box .prize-header .prize-title {
       font-weight: 900;
       font-size: 28px;
@@ -60,8 +63,8 @@
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         font-size: 100%; }
   .lucky-draw-prize-box .mask-wrapper {
     position: absolute;
@@ -75,8 +78,8 @@
       left: 50%;
       top: 50%;
       -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
       font-size: 100px; }
   .lucky-draw-prize-box.mask {
     cursor: pointer; }
@@ -87,7 +90,7 @@
       border: 1px solid #f0f0f0;
       border-radius: 4px;
       -webkit-box-shadow: 0px 0px 10px #ccc;
-      box-shadow: 0px 0px 10px #ccc; }
+              box-shadow: 0px 0px 10px #ccc; }
 
 .card-list-modal .edit-card-box .preview-card-img {
   margin: 5px 0px;
@@ -108,8 +111,8 @@
       bottom: 0px;
       left: 50%;
       -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
       width: 0%;
       height: 1px;
       background: #eee;
@@ -121,4 +124,3 @@
     .navbar .navbar-collapse .navbar-nav .nav-item:hover:after {
       width: 90%; } }
 
-/*# sourceMappingURL=page.css.map*/

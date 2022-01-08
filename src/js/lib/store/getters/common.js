@@ -33,7 +33,7 @@ export default {
         }, []);
 
         let cardSN = cardList.filter(function(data){
-            return !awardCardSN.includes(data.sn);
+            return !awardCardSN.includes(data.sn) && !data.del;
         }).map(function(data){
             return data.sn;
         });
