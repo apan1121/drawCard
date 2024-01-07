@@ -1,7 +1,7 @@
 module.exports = {
     "root": true,
     "parserOptions": {
-        "parser": "babel-eslint",
+        "parser": "@babel/eslint-parser",
         "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {
@@ -14,7 +14,8 @@ module.exports = {
         "node": true,
         "commonjs": true,
         "es6": true,
-        "jquery": true
+        "jquery": true,
+        "jest": true
     },
     // To configure global variables inside of a configuration file, set the globals configuration property to an object containing keys named for each of the global variables you want to use. For each global variable key, set the corresponding value equal to "writable" to allow the variable to be overwritten or "readonly" to disallow overwriting.
     "globals": {
@@ -22,18 +23,19 @@ module.exports = {
     },
     // To configure plugins inside of a configuration file, use the plugins key, which contains a list of plugin names. The eslint-plugin- prefix can be omitted from the plugin name.
     "plugins": [
-        "vue"
+        "vue",
+        // "jest"
     ],
     "extends": [
         "eslint:recommended",
         "airbnb-base",
-        "plugin:vue/recommended"
+        'plugin:vue/vue3-recommended'
     ],
     "settings": {
         "import/resolver": {
             "webpack": {
-                "config": "webpack.config.js",
-                "extensions": [ ".js", ".jsx", ".vue" ]
+                "config": "./webpack5/resolver.js",
+
             },
         }
     },
@@ -207,5 +209,5 @@ module.exports = {
                 "indent": "off"
             }
         }
-    ]
+    ],
 }

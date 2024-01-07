@@ -1,18 +1,365 @@
-.imgLiquidFill{
-    img {
-        display: none;
+@import '../common/_variable.scss';
+
+#appBox{
+    padding-top: 4rem;
+}
+
+.navbar {
+    user-select: none;
+    .navbar-collapse {
+        .nav-item {
+            cursor: pointer;
+            span {
+                margin-left: $spacer * 0.25;
+            }
+        }
+    }
+    .navbar-nav[rel="right"]{
+        .nav-item{
+            span {
+                @media (min-width: 768px){
+                    display: none;
+                }
+            }
+            &[rel="i18n"]{
+                .dropdown-menu{
+                    left: initial;
+                    right: 0;
+                }
+            }
+        }
     }
 }
 
 .bg-img{
     position: fixed;
-    width: 100vw;
-    height: 100vh;
     top: 0px;
     left: 0px;
     z-index: -1;
+    width: 100vw;
+    height: 100vh;
     background-position: center center;
     background-size: cover;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.ellipsis{
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.lucky-draw-box{
+    &.empty{
+        display: flex;
+        min-height: calc(100vh - 4rem);
+        flex-direction: column;
+        .alert{
+            flex: none;
+        }
+        .lucky-draw-empty-box{
+            flex: 1;
+        }
+    }
+}
+
+.lucky-draw-empty-box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border-radius: 10px;
+    background: rgba( 100, 100, 100, 0.3);
+    color: #222;
+    text-align: center;
+    font-weight: 900;
+    font-size: 25px;
+    .lucky-draw-empty-info{
+        max-height: 100%;
+        overflow: auto;
+        max-width: 450px;
+        padding: $spacer * 1;
+    }
+    a{
+        border-bottom: 1px solid #222;
+        color: #222;
+        &:hover{
+            text-decoration: unset;
+        }
+    }
+}
+
+
+.card-list-page{
+    .edit-card-box{
+        padding: $spacer;
+        background: $gray-300;
+        border-radius: $spacer * 0.25;
+        border: 1px solid $gray-900;
+        // .card-box{
+        //     display: inline-block;
+        //     border-radius: $spacer * 0.25;
+        //     overflow: hidden;
+        //     position: relative;
+        //     background: $black;
+        //     .card-title{
+        //         position: absolute;
+        //         color: $white;
+        //         font-size: $spacer * 1.5;
+        //         bottom: 0px;
+        //         margin-bottom:0px;
+        //         text-align: center;
+        //         padding: $spacer * 0.5 0;
+        //         width: 100%;
+        //         height: 100%;
+        //         display: flex;
+        //         justify-content: center;
+        //         align-items: center;
+        //         background: rgba($black, 0.5);
+        //     }
+        //     &.has-img{
+        //         .card-title{
+        //             position: absolute;
+        //             font-size: $spacer * 1;
+        //             height: auto;
+        //         }
+        //     }
+        // }
+        .form-group{
+            margin-bottom: $spacer * 0.5;
+        }
+    }
+    .card-info-box{
+        display: flex;
+        padding: $spacer * 0.5 $spacer * 0.25;
+        background: $gray-100;
+        margin-bottom: $spacer * 0.5;
+        border-radius: $spacer * 0.25;
+        .card-info-item{
+            flex: none;
+            padding: $spacer * 0.25;
+            align-self: center;
+            &[rel="drag"]  {
+                flex: none;
+            }
+            &[rel="img"]{
+                .preview-card-img{
+                    width: $spacer * 3.5;
+                    height: $spacer * 3.5;
+                    border-radius: $spacer * 0.25;
+                }
+            }
+            &[rel="title"]{
+                flex: 1;
+            }
+            &[rel="tool"]{
+                flex: none;
+                .btn:not(:first-child) {
+                    margin-left: $spacer * 0.5;
+                }
+            }
+        }
+    }
+}
+
+.prize-list-page{
+    .edit-prize-box{
+        padding: $spacer;
+        background: $gray-300;
+        border-radius: $spacer * 0.25;
+        border: 1px solid $gray-900;
+        .form-group{
+            margin-bottom: $spacer * 0.5;
+        }
+    }
+    .prize-info-box{
+        display: flex;
+        padding: $spacer * 0.5 $spacer * 0.25;
+        background: $gray-100;
+        margin-bottom: $spacer * 0.5;
+        border-radius: $spacer * 0.25;
+        align-items: stretch;
+        justify-content: stretch;
+        .prize-info-item{
+            flex: none;
+            padding: $spacer * 0.25;
+            align-self: center;
+            &[rel="drag"]  {
+                flex: none;
+                padding: 5px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+            }
+            &[rel="title"]{
+                flex: 1;
+                .prize-title{
+                    font-size: $spacer * 1.25;
+                    font-weight: 900;
+                    color: $gray-900;
+                    max-width: 300px;
+                }
+                .prize-desc{
+                    font-size: $spacer * 0.75;
+                    color: $gray-800;
+                    max-width: 300px;
+                }
+            }
+            &[rel="cnt"]{
+                flex: none;
+                &:before{
+                    content: '[ ';
+                }
+                &:after{
+                    content: ' ]';
+                }
+            }
+            &[rel="tool"]{
+                flex: none;
+                .btn:not(:first-child) {
+                    margin-left: $spacer * 0.5;
+                }
+            }
+        }
+    }
+}
+
+.card-box{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    background-color: #CCC;
+    .card-box-wrapper{
+        width: 100%;
+        height: 100%;
+    }
+    .card-title{
+        position: absolute;
+        color: $white;
+        font-size: $spacer * 1.5;
+        bottom: 0px;
+        margin-bottom:0px;
+        text-align: center;
+        padding: $spacer * 0.5 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &.empty{
+        font-size: 40px;
+        &:after{
+            content: "?";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100%;
+        }
+    }
+    &.has-img{
+        .card-title{
+            position: absolute;
+            font-size: $spacer * 1;
+            height: auto;
+            margin-bottom: 0px;
+            bottom: 0px;
+            width: 100%;
+            justify-content: initial;
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: center;
+            display: initial;
+            left: 0px;
+            padding: 4px;
+            background: rgba($black, 0.8);
+        }
+    }
+}
+
+
+#cardListCSVPage, #prizeListCSVPage{
+    &.drop{
+        position: relative;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgba($gray-500, 0.4);
+            z-index: 1;
+        }
+        &:after{
+            z-index: 2;
+            content: '上傳 CVS 檔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc(100% - #{$spacer * 2});
+            height: calc(100% - #{$spacer * 2});
+            border: $spacer * 0.25 dashed $gray-700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(-50%, -50%);
+            border-radius: $spacer * 0.25;
+            font-size: $spacer;
+            font-weight: 900;
+        }
+    }
+    .csv-input{
+        min-height: 300px;
+        max-height: calc(100vh - 200px);
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: scroll;
+    }
+}
+
+
+.draw-card-choose-list{
+    .draw-card-choose-item{
+        display: flex;
+        overflow: hidden;
+        border-radius: $spacer * 0.25;
+        font-size: $spacer * 1.25;
+        user-select: none;
+        .draw-card-choose-text{
+            flex: 1;
+            padding: $spacer * 0.75 $spacer;
+            background: $blue-200;
+            color: $black;
+            cursor: pointer;
+            &:active{
+                background: $blue-600;
+            }
+        }
+        .draw-card-choose-del{
+            flex: none;
+            padding: $spacer * 0.75 $spacer;
+            background: $blue-200;
+            color: $black;
+            cursor: pointer;
+            &:active{
+                background: $blue-600;
+            }
+        }
+    }
 }
 
 .lucky-draw-prize-box{
@@ -32,6 +379,7 @@
     .prize-header{
         display: flex;
         flex: 1;
+        align-items: center;
         .prize-title{
             font-weight: 900;
             font-size: 28px;
@@ -44,38 +392,49 @@
     .prize-description{
         width: 100%;
         font-size: 20px;
-        color: #fff;
-        background: #900;
+        // color: #fff;
+        // background: #900;
         padding: 5px;
         border-radius: 4px;
+        position: relative;
     }
     .prize-draw-content{
-        .card-box{
+        .card-item {
             display: inline-block;
-            width: 100px;
-            height: 100px;
             margin: 5px;
             border-radius: 5px;
             overflow: hidden;
-            .card-box-wrapper{
-                width: 100%;
-                height: 100%;
-            }
-            &.empty{
-                position: relative;
-                font-size: 40px;
-                .card-box-wrapper{
-                    &:after{
-                        content: "?";
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        font-size: 100%;
-                    }
-                }
+            position: relative;
+            user-select: none;
+            .card-box{
+                background: #CCC;
             }
         }
+        // .card-box{
+        //     display: inline-block;
+        //     width: 100px;
+        //     height: 100px;
+        //     margin: 5px;
+        //     border-radius: 5px;
+        //     overflow: hidden;
+        //     position: relative;
+        //     user-select: none;
+        //     .card-box-wrapper{
+        //         width: 100%;
+        //         height: 100%;
+        //     }
+        //     &.empty{
+        //         font-size: 40px;
+        //         &:after{
+        //             content: "?";
+        //             position: absolute;
+        //             top: 50%;
+        //             left: 50%;
+        //             transform: translate(-50%, -50%);
+        //             font-size: 100%;
+        //         }
+        //     }
+        // }
     }
     .mask-wrapper{
         position: absolute;
@@ -107,66 +466,10 @@
     }
 }
 
-
-.card-list-modal{
-    .edit-card-box{
-        .preview-card-img{
-            margin: 5px 0px;
-            width: 60px;
-            height: 60px;
-            border-radius: 4px;
-            background: #ccc;
-        }
-    }
-}
-
-
-
-.navbar {
-    .navbar-collapse {
-        .nav-item {
-            cursor: pointer;
-        }
-    }
-}
-
-@mixin transition {
-    transition: all 0.01s;
-}
-
-
-@media (min-width: 755px) {
-    .navbar {
-        .navbar-collapse {
-            .navbar-nav {
-                .nav-item {
-                    position: relative;
-
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        bottom: 0px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 0%;
-                        height: 1px;
-                        background: #eee;
-                        transition: all 0.2s;
-                    }
-
-                    &.active {
-                        &:after {
-                            width: 90%;
-                        }
-                    }
-
-                    &:hover {
-                        &:after {
-                            width: 90%;
-                        }
-                    }
-                }
-            }
-        }
+.donate-image{
+    border-radius: $spacer * 0.25;
+    overflow: hidden;
+    img{
+        width: 100%;
     }
 }

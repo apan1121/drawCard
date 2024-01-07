@@ -1,0 +1,15 @@
+{
+    "PrizeCount": "Prize Count",
+    "CardCount": "Card Count",
+    "NotEnoughCardForDrawCard": "the amount of prizes is greater than the amount of cards",
+    "PrizeNotBeenCreated": "The prizes have not been created yet.",
+    "AddPrize": "Add Prize",
+    "EditPrize": "Edit Prize",
+    "PrizeTitle": "Prize Title",
+    "PrizeDesc": "Prize Description",
+    "PrizeSound": "Prize Sound",
+    "PrizeNoSound": "No Sound",
+    "PlzEnterPrizeTitle": "Please enter the prize title.",
+    "PlzCountDoNotZero": "The count cannot be less than 0.",
+    "SaveModifiedPrizeNotice": "If you save the current modified prize information, you may lose lottery records."
+}

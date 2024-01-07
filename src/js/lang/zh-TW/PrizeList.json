@@ -1,0 +1,15 @@
+{
+    "PrizeCount": "獎品數量",
+    "CardCount": "卡片數量",
+    "NotEnoughCardForDrawCard": "獎品數量大於卡片數量",
+    "PrizeNotBeenCreated": "獎品尚未被建立",
+    "AddPrize": "新增獎品",
+    "EditPrize": "編輯獎品",
+    "PrizeTitle": "獎品名稱",
+    "PrizeDesc": "獎品描述",
+    "PrizeSound": "獲獎音效",
+    "PrizeNoSound": "無音效",
+    "PlzEnterPrizeTitle": "請輸入獎品名稱",
+    "PlzCountDoNotZero": "數量不能小於0",
+    "SaveModifiedPrizeNotice": "儲存調整獎項資訊將導致抽獎紀錄遺失"
+}

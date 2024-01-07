@@ -1,0 +1,11 @@
+{
+    "DrawCardList": "Draw Card List",
+    "YouHaveEvent": "You have created {count} events.",
+    "OrCreateEvent": "Or create a new event.",
+    "CreateEvent": "Creat New Event",
+    "EventName": "Event Name",
+    "Create": "Create",
+    "EmptyTitle": "Empty Title",
+    "Notice.RemoveDrawEvent": "Are you sure you want to delete this [{EventTitle}] Event?",
+    "Notice.RemoveDrawEventCantUndo": "After deletion, it cannot be undone."
+}

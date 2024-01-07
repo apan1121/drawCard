@@ -1,0 +1,12 @@
+{
+    "CardsNotBeenCreated": "The cards have not been created yet.",
+    "AddCard": "Add Card",
+    "EditCard": "Edit Card",
+    "CardUrl": "Card URL",
+    "CardTitle": "Card Title",
+    "CardNotice": "Card Notice",
+    "CardTitleShow": "Show",
+    "CardTitleHide": "Hide",
+    "PlzEnterCardTitle": "Please enter the card title.",
+    "SaveModifiedCardNotice": "If you save the current modified card information, you may lose lottery records."
+}

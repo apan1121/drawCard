@@ -1,45 +1,46 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
+// import Vue from 'vue';
+// import Vuex from 'vuex';
 
 import actionsStorage from './actions/index';
 import stateStorage from './state/index';
 import mutationsStorage from './mutations/index';
 import gettersStorage from './getters/index';
 
-
-Vue.use(Vuex);
+// Vue.use(Vuex);
 export default {
-}
 
-export const createStore = (params) => {
+};
+
+export const createStores = (params) => {
     let actions = {};
     let state = {};
     let mutations = {};
     let getters = {};
 
-    params.forEach(function(key){
-        let keys = key.split(".");
-        let tmpActions = {...actionsStorage};
-        let tmpState = {...stateStorage};
-        let tmpMutations = {...mutationsStorage};
-        let tmpGetters = {...gettersStorage};
-        while ( keys.length > 0 ) {
+    params.forEach((key) => {
+        const keys = key.split('.');
+        let tmpActions = { ...actionsStorage };
+        let tmpState = { ...stateStorage };
+        let tmpMutations = { ...mutationsStorage };
+        let tmpGetters = { ...gettersStorage };
+        while (keys.length > 0) {
             key = keys.shift();
 
             if ([undefined].indexOf(tmpActions[key]) == -1) {
-                 tmpActions = tmpActions[key];
+                tmpActions = tmpActions[key];
             }
 
             if ([undefined].indexOf(tmpState[key]) == -1) {
-                 tmpState = tmpState[key];
+                tmpState = tmpState[key];
             }
 
             if ([undefined].indexOf(tmpMutations[key]) == -1) {
-                 tmpMutations = tmpMutations[key];
+                tmpMutations = tmpMutations[key];
             }
 
             if ([undefined].indexOf(tmpGetters[key]) == -1) {
-                 tmpGetters = tmpGetters[key];
+                tmpGetters = tmpGetters[key];
             }
         }
         actions = Object.assign({}, actions, tmpActions);
@@ -52,11 +53,11 @@ export const createStore = (params) => {
     //     // console.log({...actions}, {...state}, {...mutations}, {...getters});
     // }
 
-    return new Vuex.Store({
-      actions,
-      state,
-      mutations,
-      getters,
-      struct: true
-    })
+    return createStore({
+        actions,
+        state,
+        mutations,
+        getters,
+        struct: true,
+    });
 };

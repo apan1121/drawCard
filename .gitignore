@@ -1,9 +1,15 @@
-
-/node_modules/
-/vendor/
-package-lock.json
+/node_modules
+.env
+.env.backup
+.phpunit.result.cache
+.vscode
+.DS_Store
 composer.lock
+package-lock.json
+/vendor/
+/storage/
 /dist
 /config/config.php
+/config/sheet.json
 
 
