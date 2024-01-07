@@ -6,7 +6,7 @@ This is a free online drawing program based on images, suitable for your FB and 
 
 ### Support Locale
 - [English](https://apan1121.github.io/drawCard/?locale=en)
-- [English](https://apan1121.github.io/drawCard/?locale=zh-TW)
+- [中文](https://apan1121.github.io/drawCard/?locale=zh-TW)
 
 
 ### Link
