@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[665],{1665:e=>{e.exports=JSON.parse('{"DrawCardList":"抽卡列表","YouHaveEvent":"發現你有建立過 { count } 個抽獎活動","OrCreateEvent":"或建立一組新的抽獎活動","CreateEvent":"建立新抽獎活動","EventName":"活動名稱","Create":"建立","EmptyTitle":"尚未建立名稱","Notice.RemoveDrawEvent":"你確定要刪除 [{EventTitle}] 此筆抽獎嗎？","Notice.RemoveDrawEventCantUndo":"刪除後將無法回復"}')}}]);

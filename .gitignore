@@ -1,3 +1,4 @@
+
 /node_modules
 .env
 .env.backup
@@ -8,7 +9,6 @@ composer.lock
 package-lock.json
 /vendor/
 /storage/
-/dist
 /config/config.php
 /config/sheet.json
 

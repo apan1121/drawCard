@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[91],{4091:e=>{e.exports=JSON.parse('{"CardsNotBeenCreated":"圖卡尚未被建立","AddCard":"新增圖卡","EditCard":"編輯圖卡","CardUrl":"圖片網址","CardTitle":"圖片標題","CardNotice":"備註","CardTitleShow":"顯示","CardTitleHide":"不顯示","PlzEnterCardTitle":"請輸入圖卡標題","SaveModifiedCardNotice":"儲存調整卡片資訊將導致抽獎紀錄遺失"}')}}]);
