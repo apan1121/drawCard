@@ -1,7 +1,7 @@
 <?php
     
-        $ver = "54b4187";
+        $ver = "6086da9";
         define('WEB_VER', $ver);
-        $ver_time = "1705987694";
+        $ver_time = "1705995029";
         define('WEB_VER_TIME', $ver_time);
     
