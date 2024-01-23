@@ -239,6 +239,18 @@
     position: relative;
     user-select: none;
     background-color: #CCC;
+    &.focus {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        box-shadow: 0 0 10px #333;
+    }
+    &.cursor-point{
+        cursor: pointer;
+    }
+
     .card-box-wrapper{
         width: 100%;
         height: 100%;

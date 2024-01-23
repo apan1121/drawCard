@@ -42,6 +42,7 @@
                         <div class="card-item">
                             <card-box
                                 :sn="cardSN"
+                                :click-focus="cardSN !== false ? true : false"
                             ></card-box>
                         </div>
                     </template>
@@ -297,6 +298,7 @@ export default {
                 });
             } else {
                 let chooseCardSN = false;
+
                 that.randDrawTimer = setInterval(() => {
                     if (validSNLength > 0) {
                         // eslint-disable-next-line prefer-exponentiation-operator, no-restricted-properties

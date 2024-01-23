@@ -1,32 +1,42 @@
 <template>
-    <div class="card-box"
+    <div
         :style="{
             width: `${formatBoxSize}px`,
             height: `${formatBoxSize}px`,
         }"
-        :class="{
-            'has-img': !!showImg,
-            empty: sn === false && cardInfoFormat === false,
-        }"
     >
-        <div v-if="showImg" class="card-wrapper"
+        <div class="card-box"
             :style="{
-                'background-image': `url(${showImg})`,
-                'background-size': 'cover',
-                'background-position': 'center center',
-                'background-repeat': 'no-repeat',
-                width: '100%',
-                height: '100%',
+                width: `${formatBoxSizeAndFocus}px`,
+                height: `${formatBoxSizeAndFocus}px`,
             }"
+            :class="{
+                'has-img': !!showImg,
+                empty: sn === false && cardInfoFormat === false,
+                focus,
+                'cursor-point': clickFocus,
+            }"
+            @click="clickCard"
         >
-        </div>
+            <div v-if="showImg" class="card-wrapper"
+                :style="{
+                    'background-image': `url(${showImg})`,
+                    'background-size': 'cover',
+                    'background-position': 'center center',
+                    'background-repeat': 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                }"
+            >
+            </div>
 
-        <div v-if="!showImg || showTitleFlag" class="card-title"
-            :style="{
-                'font-size': `${formatBoxFontSize}px`,
-            }"
-            v-text="showTitle"
-        >
+            <div v-if="!showImg || showTitleFlag" class="card-title"
+                :style="{
+                    'font-size': `${formatBoxFontSize}px`,
+                }"
+                v-text="showTitle"
+            >
+            </div>
         </div>
     </div>
 </template>
@@ -62,9 +72,15 @@ export default {
             type: Boolean,
             default: true,
         },
+        clickFocus: {
+            type: Boolean,
+            default: false,
+        },
     },
     data(){
-        return {};
+        return {
+            focus: false,
+        };
     },
     computed: {
         ...mapGetters({
@@ -110,6 +126,18 @@ export default {
             }
             return boxSize;
         },
+        formatBoxSizeAndFocus(){
+            const that = this;
+            let boxSize = 100;
+            if (this.focus) {
+                const { innerWidth, innerHeight } = window;
+                boxSize = Math.min(innerWidth, innerHeight) * 0.9;
+            } else {
+                boxSize = that.formatBoxSize;
+            }
+            return boxSize;
+        },
+
         formatBoxFontSize(){
             let { boxFontSize } = this;
             if (boxFontSize === false) {
@@ -131,6 +159,20 @@ export default {
     methods: {
         ...mapActions({}),
         ...mapMutations({}),
+        clickCard(){
+            const that = this;
+            console.log('clickCard', that.clickFocus);
+            if (that.clickFocus) {
+                that.focus = !that.focus;
+                if (that.focus) {
+                    setTimeout(() => {
+                        $('body').one('click', () => {
+                            that.focus = false;
+                        });
+                    }, 300);
+                }
+            }
+        },
     },
 };
 </script>
