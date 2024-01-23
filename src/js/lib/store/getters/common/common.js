@@ -30,25 +30,27 @@ export default {
         return cardListMapping;
     },
     waitCardSN: (state) => {
+        console.log('waitCardSN');
         const cardList = JSON.parse(JSON.stringify(state.cardList));
         const prizeList = JSON.parse(JSON.stringify(state.prizeList));
         const prizeCardMapping = JSON.parse(JSON.stringify(state.prizeCardMapping));
 
         let waitCardSN = [];
         cardList.forEach((cardInfo) => {
-            if (cardInfo.del === false) {
+            if (cardInfo.del === false || cardInfo.del === 'false') {
                 waitCardSN.push(cardInfo.sn);
             }
         });
 
         prizeList.forEach((prizeInfo) => {
-            if (prizeInfo.del === false) {
+            if (prizeInfo.del === false || prizeInfo.del === 'false') {
                 if (typeof prizeCardMapping[prizeInfo.sn] !== 'undefined' && Array.isArray(prizeCardMapping[prizeInfo.sn])) {
                     const prizeCardSN = prizeCardMapping[prizeInfo.sn];
                     waitCardSN = waitCardSN.filter((e) => prizeCardSN.indexOf(e) === -1);
                 }
             }
         });
+
         return waitCardSN;
     },
 

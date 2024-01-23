@@ -170,6 +170,7 @@ export default {
                                     const key = columns[index];
                                     data[key] = csvInfo[index] || '';
                                 }
+                                data.del = ['true', true, 1].includes(data.del);
                                 prizeList.push(data);
                             }
                         }
