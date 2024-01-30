@@ -99,10 +99,15 @@ export default {
 
     randomConfig: {
         webTitle: 'Draw Card',
-        boxSize: 200,
-        headerColor: '#343a40',
+        PrizeTitleColor: '#212529',
         PrizeDescColor: '#FFF',
         PrizeDescBgColor: '#900',
+        boxSize: 200,
+        boxFontSize: 16,
+        boxFontColor: '#FFF',
+        boxFontBgColor: '#000',
+        boxFontBgOpacity: 0.8,
+        headerColor: '#343a40',
         backgroundImg: '',
         backgroundOpacity: 0.5,
         randomDrawWait: 80,

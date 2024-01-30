@@ -24,9 +24,26 @@
         <div v-if="!showImg || showTitleFlag" class="card-title"
             :style="{
                 'font-size': `${formatBoxFontSize}px`,
+                'color': `${formatBoxFontColor}`,
             }"
-            v-text="showTitle"
         >
+            <div class="card-title-wrapper">
+                <div class="card-title-bg"
+                    :style="{
+                        'background-color': `${formatBoxFontBgColor}`,
+                        opacity: `${formatBoxFontBgOpacity}`,
+                        'font-size': `${formatBoxFontSize}px`,
+                        color: `${formatBoxFontBgColor}`,
+                    }"
+                    v-text="showTitle"
+                ></div>
+                <div class="card-title-text"
+                    :style="{
+                        'font-size': `${formatBoxFontSize}px`,
+                        'color': `${formatBoxFontColor}`,
+                    }"
+                    v-text="showTitle"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -52,6 +69,18 @@ export default {
             default: false,
         },
         boxFontSize: {
+            type: [Number, Boolean],
+            default: false,
+        },
+        boxFontColor: {
+            type: [String, Boolean],
+            default: false,
+        },
+        boxFontBgColor: {
+            type: [String, Boolean],
+            default: false,
+        },
+        boxFontBgOpacity: {
             type: [Number, Boolean],
             default: false,
         },
@@ -114,6 +143,29 @@ export default {
                 boxFontSize = 16;
             }
             return boxFontSize;
+        },
+
+        formatBoxFontColor(){
+            let { boxFontColor } = this;
+            if (boxFontColor === false) {
+                boxFontColor = this.config.boxFontColor;
+            }
+            return boxFontColor;
+        },
+        formatBoxFontBgColor(){
+            let { boxFontBgColor, boxFontBgOpacity } = this;
+            if (boxFontBgColor === false) {
+                boxFontBgColor = this.config.boxFontBgColor;
+            }
+            return boxFontBgColor;
+        },
+        formatBoxFontBgOpacity(){
+            let { boxFontBgOpacity } = this;
+            if (boxFontBgOpacity === false) {
+                boxFontBgOpacity = this.config.boxFontBgOpacity;
+            }
+
+            return boxFontBgOpacity;
         },
     },
     watch: {
