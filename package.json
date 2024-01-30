@@ -38,6 +38,7 @@
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
     "fingerprintjs2": "^2.1.0",
+    "hex-rgb": "^5.0.0",
     "jest-canvas-mock": "^2.3.1",
     "jquery": "^3.4.0",
     "jquery-cropper": "^1.0.1",

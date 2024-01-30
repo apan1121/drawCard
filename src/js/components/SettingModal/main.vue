@@ -148,9 +148,56 @@
                                 <input v-model.number="input.boxFontSize" name="boxFontSize"
                                     type="range"
                                     class="form-control"
-                                    min="11" max="30"
+                                    min="11" max="60"
                                 >
                             </div>
+                            <div class="form-group">
+                                <label for="boxFontColor" style="display: flex;">
+                                    {{ $t('Setting.CardFontColor') }}
+                                    <span :style="{
+                                              background: input.boxFontColor,
+                                              width: '20px',
+                                              height: '20px',
+                                              display: 'inline-block',
+                                              border: '1px solid #999'
+                                          }"
+                                        class="ml-2"
+                                    ></span>
+                                </label>
+                                <input v-model="input.boxFontColor" name="boxFontColor" type="text"
+                                    class="form-control"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="boxFontBgColor" style="display: flex;">
+                                    {{ $t('Setting.CardFontBgColor') }}
+                                    <span :style="{
+                                              background: input.boxFontBgColor,
+                                              width: '20px',
+                                              height: '20px',
+                                              display: 'inline-block',
+                                              border: '1px solid #999'
+                                          }"
+                                        class="ml-2"
+                                    ></span>
+                                </label>
+                                <input v-model="input.boxFontBgColor" name="boxFontBgColor" type="text"
+                                    class="form-control"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="boxFontBgOpacity">
+                                    {{ $t('Setting.CardFontBgOpacity') }} [{{ input.boxFontBgOpacity }}]
+                                </label>
+                                <input v-model.number="input.boxFontBgOpacity" name="boxFontBgOpacity"
+                                    type="range"
+                                    class="form-control"
+                                    min="0.1" max="1"
+                                    step="0.01"
+                                >
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="randomDrawWait">{{ $t('Setting.RandomSpeed') }} [{{ input.randomDrawWait }} ms]</label>
                                 <input v-model.number="input.randomDrawWait"
@@ -247,6 +294,9 @@ export default {
                 PrizeDescBgColor: '#900',
                 boxSize: 200,
                 boxFontSize: 16,
+                boxFontColor: '#FFF',
+                boxFontBgColor: '#000',
+                boxFontBgOpacity: 0.8,
                 headerColor: '#343a40',
                 backgroundImg: '',
                 backgroundOpacity: 0.5,
@@ -260,6 +310,9 @@ export default {
                 PrizeDescBgColor: '#900',
                 boxSize: 200,
                 boxFontSize: 16,
+                boxFontColor: '#FFF',
+                boxFontBgColor: '#000',
+                boxFontBgOpacity: 0.8,
                 headerColor: '#343a40',
                 backgroundImg: '',
                 backgroundOpacity: 0.5,

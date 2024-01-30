@@ -29,6 +29,10 @@
                 <card-box v-if="input.img || input.title"
                     :card-info="input"
                     :box-size="100"
+                    :box-font-size="12"
+                    :box-font-color="'#FFF'"
+                    :box-font-bg-color="'#000'"
+                    :box-font-bg-opacity="0.7"
                 ></card-box>
             </div>
             <form action="javascript:;">
